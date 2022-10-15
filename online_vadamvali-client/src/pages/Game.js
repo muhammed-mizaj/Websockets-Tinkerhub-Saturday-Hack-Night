@@ -16,50 +16,45 @@ const Game = () => {
     setScore2(team2Score);
   };
   const [right, setRight] = useState(50);
-  
+
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
-    setRight((right)=>((team1Score-team2Score)+50)) 
+    setRight((right) => team1Score - team2Score + 50);
   });
-  
+
   const handleUserClick = () => {
     // emit 2
     socket.emit("click", team_id);
     console.log(team_id);
-    
   };
   const handleChangeTeamID = (event) => {
     setTeamid(event.target.value);
   };
-  
+
   return (
     <div
       style={{
         backgroundImage: `url(${bg})`,
-        
+
         backgroundSize: "cover",
       }}
       className="w-full h-full flex flex-row justify-center overflow-hidden  "
     >
       <div className="flex flex-col justify-center items-center">
-
-      <div className="justify-center items-center">
-        
-        <img src={head} alt="" className='scale-75 mt-14' />
+        <div className="justify-center items-center">
+          <img src={head} alt="" className="scale-75 mt-14 mb-5" />
         </div>
-        <div className="flex flex-row">
-          <div className="">
-          <h1>Enter Your team Id</h1>
-          
-          
+        <div className="flex flex-row ">
+          <div className="mr-2 mt-3">
+            <h1>Choose Your Team </h1>
           </div>
-         <div>
-         <input
-            type="text"
-            className="h-6 p-2 m-4"
-            onChange={handleChangeTeamID}
-          ></input>
-         </div>
+          <div>
+            <input
+              type="text"
+              className="h-12 p-[5px] w-12"
+              onChange={handleChangeTeamID}
+            ></input>
+          </div>
         </div>
 
         <div className="">
@@ -69,9 +64,9 @@ const Game = () => {
         <div>
           <div>
             <div className="w-screen flex flex-col items-center h-screen">
-              <div className="bg-white w-2/4 h-2/4 p-4 px-10">
+              <div className="bg-white w-2/4 h-2/4 p-[30px] px-[250px]">
                 {/* ee divinde porthek vannal win cheyum */}
-                <div className="w-full bg-white h-full relative border-x-4 border-red-500">
+                <div className="w-full bg-white h-full relative border-x-4 border-red-500 ">
                   <div
                     style={{
                       right: `${right}%`,
