@@ -43,7 +43,7 @@ const Game = () => {
       <div>
       <h1>Enter Your team Id</h1>
       <input type="text" className='h-6 p-2 m-4'></input>
-      
+      <button className="bg-blue-900 p-2 m-2 rounded-sm">Add</button>
       </div>
 
       <div className="">
@@ -52,8 +52,13 @@ const Game = () => {
       </div>
       <div>
         <div>
+            
+<div className='w-screen flex flex-col items-center h-screen'>
+<div className='bg-white w-3/4 h-3/4 p-4 px-10'>
 
-        <div className='w-full bg-white h-full relative border-x-4 border-red-500'>
+
+    {/* ee divinde porthek vannal win cheyum */}
+    <div className='w-full bg-white h-full relative border-x-4 border-red-500'>
         <div style={{
             right: `${right}%`,
             transition: "right 200ms ease-in-out"
@@ -61,6 +66,12 @@ const Game = () => {
 
         </div>
     </div>
+</div>
+<button onClick={handleUserClick} className='bg-white rounded px-4 mt-10'>click</button>
+
+
+</div>
+
         </div>
       <button className="bg-blue-700 h-8 p-2 m-2 rounded-xl`" onClick={Increment}>Click Here</button>
       </div>
