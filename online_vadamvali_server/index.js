@@ -34,13 +34,25 @@ app.get("/", function (req, res) {
   res.send("HELLO GUYS..");
 });
 
+let team1Score = 0;
+let team2Score = 0;
 //Whenever someone connects this gets executed
 io.on("connection", function (socket) {
   console.log("A user connected");
 
-  //Whenever someone disconnects this piece of code executed
+  socket.on("click", (team_id) => {
+    if (team_id == 1) {
+      team1Score++;
+      socket.emit("score", team1Score, team2Score);
+    } else if (team_id == 2) {
+      team2Score++;
+      socket.emit("score", team1Score, team2Score);
+    }
+  });
   socket.on("disconnect", function () {
     console.log("A user disconnected");
+    team1Score = 0;
+    team2Score = 0;
   });
 });
 
