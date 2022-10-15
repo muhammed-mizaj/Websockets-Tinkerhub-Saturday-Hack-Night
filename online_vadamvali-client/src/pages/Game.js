@@ -7,13 +7,11 @@ import { io } from "socket.io-client";
 const Game = () => {
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
-  const team_id = 1;
+  const [team_id, setTeamid] = useState(0);
   let socket = io("ws://localhost:3000", { transports: ["websocket"] });
-  const Increment = () => {
-    socket.emit("click", team_id);
-  };
+
   const updateStates = (team1Score, team2Score) => {
-    console.log(team1Score, team2Score);
+    // console.log(team1Score, team2Score);
     setScore1(team1Score);
     setScore2(team2Score);
   };
@@ -22,14 +20,14 @@ const Game = () => {
   });
   const [right, setRight] = useState(50);
   const handleUserClick = () => {
-      // emit 2
-      setRight((right) => right - 2);
-  }
-  const handleOponentClick = () => {
-      setRight((right) => right + 1/100);
-  }
+    // emit 2
+    socket.emit("click", team_id);
+    console.log(team_id);
+  };
+  const handleChangeTeamID = (event) => {
+    setTeamid(event.target.value);
+  };
   return (
-
     <div
       style={{
         backgroundImage: `url(${bg})`,
@@ -38,45 +36,46 @@ const Game = () => {
       }}
       className="w-full h-full flex flex-row justify-center overflow-hidden  "
     >
-
       <div className="flex flex-col">
-      <div>
-      <h1>Enter Your team Id</h1>
-      <input type="text" className='h-6 p-2 m-4'></input>
-      <button className="bg-blue-900 p-2 m-2 rounded-sm">Add</button>
-      </div>
-
-      <div className="">
-      <h1>Team 1: {score1}</h1>
-      <h1>Team 2: {score2}</h1>
-      </div>
-      <div>
         <div>
-            
-<div className='w-screen flex flex-col items-center h-screen'>
-<div className='bg-white w-3/4 h-3/4 p-4 px-10'>
-
-
-    {/* ee divinde porthek vannal win cheyum */}
-    <div className='w-full bg-white h-full relative border-x-4 border-red-500'>
-        <div style={{
-            right: `${right}%`,
-            transition: "right 200ms ease-in-out"
-        }} className='border-2 p-1 w-2 bg-black border-black h-full absolute right-[50%]'>
-
+          <h1>Enter Your team Id</h1>
+          <input
+            type="text"
+            className="h-6 p-2 m-4"
+            onChange={handleChangeTeamID}
+          ></input>
+          <button className="bg-blue-900 p-2 m-2 rounded-sm">Add</button>
         </div>
-    </div>
-</div>
-<button onClick={handleUserClick} className='bg-white rounded px-4 mt-10'>click</button>
 
-
-</div>
-
+        <div className="">
+          <h1>Team 1: {score1}</h1>
+          <h1>Team 2: {score2}</h1>
         </div>
-      <button className="bg-blue-700 h-8 p-2 m-2 rounded-xl`" onClick={Increment}>Click Here</button>
+        <div>
+          <div>
+            <div className="w-screen flex flex-col items-center h-screen">
+              <div className="bg-white w-3/4 h-3/4 p-4 px-10">
+                {/* ee divinde porthek vannal win cheyum */}
+                <div className="w-full bg-white h-full relative border-x-4 border-red-500">
+                  <div
+                    style={{
+                      right: `${right}%`,
+                      transition: "right 200ms ease-in-out",
+                    }}
+                    className="border-2 p-1 w-2 bg-black border-black h-full absolute right-[50%]"
+                  ></div>
+                </div>
+              </div>
+              <button
+                onClick={handleUserClick}
+                className="bg-white rounded px-4 mt-10"
+              >
+                click
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };

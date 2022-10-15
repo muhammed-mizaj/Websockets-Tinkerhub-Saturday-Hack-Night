@@ -2,7 +2,7 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 var cors = require("cors");
-
+const sessionHandler = require("io-session-handler").from(io);
 // cors
 const whitelist = [
   "http://127.0.0.1:8080",
@@ -38,15 +38,18 @@ let team1Score = 0;
 let team2Score = 0;
 //Whenever someone connects this gets executed
 io.on("connection", function (socket) {
+  socket.join("master");
   console.log("A user connected");
 
   socket.on("click", (team_id) => {
     if (team_id == 1) {
       team1Score++;
-      socket.emit("score", team1Score, team2Score);
+      socket.to("master").emit("score", team1Score, team2Score);
+      console.log(team1Score, team2Score);
     } else if (team_id == 2) {
       team2Score++;
-      socket.emit("score", team1Score, team2Score);
+      socket.to("master").emit("score", team1Score, team2Score);
+      console.log(team1Score, team2Score);
     }
   });
   socket.on("disconnect", function () {
