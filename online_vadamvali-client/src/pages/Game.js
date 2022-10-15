@@ -8,7 +8,10 @@ const Game = () => {
   const [score2, useScore2] = useState(4);
   const Increment = () => {};
   return (
-    <div>
+
+    <div  style={{ backgroundImage: `url(${bg})`, height: '100vh', backgroundSize: 'cover' }}
+    className='w-full h-full flex flex-row justify-center overflow-hidden  '>
+    
       <h1>Team  1: {score1}</h1>
       <h1>Team  2: {score2}</h1>
 
