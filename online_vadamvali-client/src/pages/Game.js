@@ -15,18 +15,23 @@ const Game = () => {
     setScore1(team1Score);
     setScore2(team2Score);
   };
+  const [right, setRight] = useState(50);
+  
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
+    setRight((right)=>((team1Score-team2Score)+50)) 
   });
-  const [right, setRight] = useState(50);
+  
   const handleUserClick = () => {
     // emit 2
     socket.emit("click", team_id);
     console.log(team_id);
+    
   };
   const handleChangeTeamID = (event) => {
     setTeamid(event.target.value);
   };
+  
   return (
     <div
       style={{
