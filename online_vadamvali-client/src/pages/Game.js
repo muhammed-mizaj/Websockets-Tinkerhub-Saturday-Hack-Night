@@ -36,20 +36,30 @@ const Game = () => {
     <div
       style={{
         backgroundImage: `url(${bg})`,
-        height: "100vh",
+        
         backgroundSize: "cover",
       }}
       className="w-full h-full flex flex-row justify-center overflow-hidden  "
     >
-      <div className="flex flex-col">
-        <div>
+      <div className="flex flex-col justify-center items-center">
+
+      <div className="justify-center items-center">
+        
+        <img src={head} alt="" className='scale-75 mt-14' />
+        </div>
+        <div className="flex flex-row">
+          <div className="">
           <h1>Enter Your team Id</h1>
-          <input
+          
+          
+          </div>
+         <div>
+         <input
             type="text"
             className="h-6 p-2 m-4"
             onChange={handleChangeTeamID}
           ></input>
-          <button className="bg-blue-900 p-2 m-2 rounded-sm">Add</button>
+         </div>
         </div>
 
         <div className="">
@@ -59,7 +69,7 @@ const Game = () => {
         <div>
           <div>
             <div className="w-screen flex flex-col items-center h-screen">
-              <div className="bg-white w-3/4 h-3/4 p-4 px-10">
+              <div className="bg-white w-2/4 h-2/4 p-4 px-10">
                 {/* ee divinde porthek vannal win cheyum */}
                 <div className="w-full bg-white h-full relative border-x-4 border-red-500">
                   <div
@@ -73,9 +83,9 @@ const Game = () => {
               </div>
               <button
                 onClick={handleUserClick}
-                className="bg-white rounded px-4 mt-10"
+                className="bg-white rounded-lg px-4 mt-2 w-[100px] h-[100px] "
               >
-                click
+                <img src={btn} className=""></img>
               </button>
             </div>
           </div>
