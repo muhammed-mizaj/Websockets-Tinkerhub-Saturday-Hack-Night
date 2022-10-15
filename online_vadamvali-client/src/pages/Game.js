@@ -58,7 +58,7 @@ const Game = () => {
             type="text"
             className="h-6 p-2 m-4"
             onChange={handleChangeTeamID}
-          ></input>
+          ></input> 
          </div>
         </div>
 
