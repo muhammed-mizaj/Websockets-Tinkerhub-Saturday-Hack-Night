@@ -20,6 +20,8 @@ const Game = () => {
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
     setRight((right) => team1Score - team2Score + 50);
+    if (team1Score - team2Score > 10) console.log("TEAM 1 WiNS");
+    else if (team1Score - team2Score < -10) console.log("TEAM 2 WiNS");
   });
 
   const handleUserClick = () => {
