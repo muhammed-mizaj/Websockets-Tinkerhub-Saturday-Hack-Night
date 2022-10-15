@@ -20,7 +20,16 @@ const Game = () => {
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
   });
+  const [right, setRight] = useState(50);
+  const handleUserClick = () => {
+      // emit 2
+      setRight((right) => right - 2);
+  }
+  const handleOponentClick = () => {
+      setRight((right) => right + 1/100);
+  }
   return (
+
     <div
       style={{
         backgroundImage: `url(${bg})`,
@@ -29,10 +38,34 @@ const Game = () => {
       }}
       className="w-full h-full flex flex-row justify-center overflow-hidden  "
     >
+
+      <div className="flex flex-col">
+      <div>
+      <h1>Enter Your team Id</h1>
+      <input type="text" className='h-6 p-2 m-4'></input>
+      
+      </div>
+
+      <div className="">
       <h1>Team 1: {score1}</h1>
       <h1>Team 2: {score2}</h1>
+      </div>
+      <div>
+        <div>
 
-      <button onClick={Increment}>Click Here</button>
+        <div className='w-full bg-white h-full relative border-x-4 border-red-500'>
+        <div style={{
+            right: `${right}%`,
+            transition: "right 200ms ease-in-out"
+        }} className='border-2 p-1 w-2 bg-black border-black h-full absolute right-[50%]'>
+
+        </div>
+    </div>
+        </div>
+      <button className="bg-blue-700 h-8 p-2 m-2 rounded-xl`" onClick={Increment}>Click Here</button>
+      </div>
+      </div>
+      
     </div>
   );
 };
