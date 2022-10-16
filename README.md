@@ -7,20 +7,26 @@ This web app version is a multiplayer game, where players can continuosly tap on
 
 - The aim of each player is to expand their teams territory as much as possible.
 
+## Working
+Two teams were there team id 1 and 2 , multiple users in a team (on multiple devices) can tap on the button to increase score of the team.
+First team which reaches the maximum difference of distance from other team (here,we took difference of 10 point) wwins the game. 
 
 
 
 ## Demo
 
-Insert gif or link to demo
+https://user-images.githubusercontent.com/84435599/196050910-a47c3d2e-57c9-4881-8866-8bb23ed60165.mp4
 
-
+## Hosted Urls
+- Frontend = https://online-vadamvali-client.vercel.app/
+- Backend = https://172.104.206.120 
 ## Tech Stack
+
 
 **Client:** React, TailwindCSS
 
 **Server:** Node
-
+ We uses Socket.io API (https://socket.io/) for creating and maintaining websocket connections 
 
 ## Contributors
 
