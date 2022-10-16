@@ -8,6 +8,8 @@ const Game = () => {
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
   const [team_id, setTeamid] = useState(0);
+  const [winner, setWinner] = useState('');
+
   let socket = io("ws://localhost:3000", { transports: ["websocket"] });
 
   const updateStates = (team1Score, team2Score) => {
@@ -16,50 +18,47 @@ const Game = () => {
     setScore2(team2Score);
   };
   const [right, setRight] = useState(50);
-  
+
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
-    setRight((right)=>((team1Score-team2Score)+50)) 
+    setRight((right) => team1Score - team2Score + 50);
+    if (team1Score - team2Score > 10) setWinner("Team 1");
+    else if (team1Score - team2Score < -10) setWinner("Team2");
   });
-  
+
   const handleUserClick = () => {
     // emit 2
     socket.emit("click", team_id);
     console.log(team_id);
-    
   };
   const handleChangeTeamID = (event) => {
     setTeamid(event.target.value);
   };
-  
+
   return (
     <div
       style={{
         backgroundImage: `url(${bg})`,
-        
+
         backgroundSize: "cover",
       }}
       className="w-full h-full flex flex-row justify-center overflow-hidden  "
     >
       <div className="flex flex-col justify-center items-center">
-
-      <div className="justify-center items-center">
-        
-        <img src={head} alt="" className='scale-75 mt-14' />
+        <div className="justify-center items-center">
+          <img src={head} alt="" className="scale-75 mt-14" />
         </div>
         <div className="flex flex-row">
           <div className="">
-          <h1>Enter Your team Id</h1>
-          
-          
+            <h1>Enter Your team Id</h1>
           </div>
-         <div>
-         <input
-            type="text"
-            className="h-6 p-2 m-4"
-            onChange={handleChangeTeamID}
-          ></input> 
-         </div>
+          <div>
+            <input
+              type="text"
+              className="h-6 p-2 m-4"
+              onChange={handleChangeTeamID}
+            ></input>
+          </div>
         </div>
 
         <div className="">
