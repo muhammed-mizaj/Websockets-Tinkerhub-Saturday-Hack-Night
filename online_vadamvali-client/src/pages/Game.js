@@ -46,16 +46,16 @@ const Game = () => {
     >
       <div className="flex flex-col justify-center items-center">
         <div className="justify-center items-center">
-          <img src={head} alt="" className="scale-75 mt-14" />
+          <img src={head} alt="" className="scale-75 mt-14 mb-5" />
         </div>
-        <div className="flex flex-row">
-          <div className="">
-            <h1>Enter Your team Id</h1>
+        <div className="flex flex-row ">
+          <div className="mr-2 mt-3">
+            <h1>Choose Your Team </h1>
           </div>
           <div>
             <input
               type="text"
-              className="h-6 p-2 m-4"
+              className="h-12 p-[5px] w-12"
               onChange={handleChangeTeamID}
             ></input>
           </div>
@@ -68,9 +68,9 @@ const Game = () => {
         <div>
           <div>
             <div className="w-screen flex flex-col items-center h-screen">
-              <div className="bg-white w-2/4 h-2/4 p-4 px-10">
+              <div className="bg-white w-2/4 h-2/4 p-[30px] px-[250px]">
                 {/* ee divinde porthek vannal win cheyum */}
-                <div className="w-full bg-white h-full relative border-x-4 border-red-500">
+                <div className="w-full bg-white h-full relative border-x-4 border-red-500 ">
                   <div
                     style={{
                       right: `${right}%`,
