@@ -10,7 +10,7 @@ const Game = () => {
   const [team_id, setTeamid] = useState(0);
   const [winner, setWinner] = useState('');
 
-  let socket = io("ws://localhost:3000", { transports: ["websocket"] });
+  let socket = io("ws://172.104.206.120:80", { transports: ["websocket"] });
 
   const updateStates = (team1Score, team2Score) => {
     // console.log(team1Score, team2Score);
@@ -46,7 +46,8 @@ const Game = () => {
     >
       <div className="flex flex-col justify-center items-center">
         <div className="justify-center items-center">
-          <img src={head} alt="" className="scale-75 mt-14 mb-5" />
+          {(winner==''?(<img src={head} alt="" className="scale-75 mt-14 mb-5" />):(<h1 className="text-green-900 bold text-6xl">{winner}Wins</h1>))}
+          
         </div>
         <div className="flex flex-row ">
           <div className="mr-2 mt-3">
@@ -60,7 +61,6 @@ const Game = () => {
             ></input>
           </div>
         </div>
-
         <div className="">
           <h1>Team 1: {score1}</h1>
           <h1>Team 2: {score2}</h1>
