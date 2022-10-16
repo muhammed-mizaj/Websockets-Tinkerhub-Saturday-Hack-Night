@@ -26,7 +26,9 @@ https://user-images.githubusercontent.com/84435599/196050910-a47c3d2e-57c9-4881-
 **Client:** React, TailwindCSS
 
 **Server:** Node
- We uses Socket.io API (https://socket.io/) for creating and maintaining websocket connections 
+
+
+- We uses Socket.io(https://socket.io/) API  for creating and maintaining websocket connections 
 
 ## Contributors
 
