@@ -10,7 +10,7 @@ const Game = () => {
   const [team_id, setTeamid] = useState(0);
   const [winner, setWinner] = useState('');
 
-  let socket = io("ws://172.104.206.120:80", { transports: ["websocket"] });
+  let socket = io("ws://localhost:3000", { transports: ["websocket"] });
 
   const updateStates = (team1Score, team2Score) => {
     // console.log(team1Score, team2Score);
@@ -22,8 +22,10 @@ const Game = () => {
   socket.on("score", (team1Score, team2Score) => {
     updateStates(team1Score, team2Score);
     setRight((right) => team1Score - team2Score + 50);
-    if (team1Score - team2Score > 10) setWinner("Team 1");
-    else if (team1Score - team2Score < -10) setWinner("Team2");
+    if (team1Score - team2Score > 10) 
+      setWinner("Team 1");
+    else if (team1Score - team2Score < -10) 
+      setWinner("Team2");
   });
 
   const handleUserClick = () => {
@@ -42,7 +44,7 @@ const Game = () => {
 
         backgroundSize: "cover",
       }}
-      className="w-full h-full flex flex-row justify-center overflow-hidden  "
+      className="w-screen h-full flex flex-row justify-center overflow-hidden  "
     >
       <div className="flex flex-col justify-center items-center">
         <div className="justify-center items-center">
@@ -68,9 +70,10 @@ const Game = () => {
         <div>
           <div>
             <div className="w-screen flex flex-col items-center h-screen">
-              <div className="bg-white w-2/4 h-2/4 p-[30px] px-[250px]">
+              <div className="bg-white w-2/4 h-2/4 p-2 px-[95px]">
                 {/* ee divinde porthek vannal win cheyum */}
                 <div className="w-full bg-white h-full relative border-x-4 border-red-500 ">
+                  {/* <div className="bg-green-500 h-1 "></div> */}
                   <div
                     style={{
                       right: `${right}%`,
